@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body dir='rtl' className={inter.className}>
+      <body dir='rtl' className={`${inter.className} dark:bg-gray-900`}>
         <Sidebar>
           {children}
         </Sidebar>
