@@ -6,13 +6,14 @@ import { CgList } from "react-icons/cg"
 import { FaUsers } from "react-icons/fa"
 import { IoIosLogIn } from "react-icons/io"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Sidebar = ({ children }: any) => {
 
     const [showSideBar, setShowSideBAr] = useState<boolean>(false);
     const [dropDown, setDropdown] = useState<boolean>(false);
     const [showUser, setShowUser] = useState<boolean>(false);
-
+    const pathName = usePathname();
     const openSideBar = () => {
         setShowSideBAr(!showSideBar);
     };
@@ -27,7 +28,7 @@ const Sidebar = ({ children }: any) => {
 
     return (
         <div>
-            <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <nav className={`fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 ${pathName === "/login" ? `hidden` : ``}`}>
                 <div className="px-3 py-3 lg:px-5 lg:pr-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-end">
@@ -80,7 +81,7 @@ const Sidebar = ({ children }: any) => {
                 </div>
             </nav>
 
-            <aside id="logo-sidebar" className={`fixed top-0 right-0 z-40 w-64 h-screen pt-20 transition-transform ${showSideBar ? `translate-x-0` : `translate-x-full`} bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidebar">
+            <aside id="logo-sidebar" className={`${pathName === "/login" ? `hidden` : ``} fixed top-0 right-0 z-40 w-64 h-screen pt-20 transition-transform ${showSideBar ? `translate-x-0` : `translate-x-full`} bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidebar">
                 <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
@@ -108,32 +109,29 @@ const Sidebar = ({ children }: any) => {
                                     <Link href="/blogs" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">لیست بلاگ ها</Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">افزودن بلاگ</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">حذف بلاگ</a>
+                                    <Link href="/blogs/create-blog" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">افزودن بلاگ</Link>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/users" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FaUsers className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                                 <span className="flex-1 mr-3 whitespace-nowrap">کاربران</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <IoIosLogIn className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                                 <span className="flex-1 mr-3 whitespace-nowrap">ورود</span>
-                            </a>
+                            </Link>
                         </li>
 
                     </ul>
                 </div>
             </aside>
 
-            <div className="p-4 sm:mr-64">
-                <div className=" p-4 dark:border-gray-700 mt-14">
+            <div className={`${pathName === "/login" ? `` : `sm:mr-64 p-4` }`}>
+                <div className={`${pathName === "/login" ? `mt-0` : `mt-14 p-4 dark:border-gray-700`}`}>
                     {children}
                 </div>
             </div>
