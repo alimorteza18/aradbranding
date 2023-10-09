@@ -7,6 +7,7 @@ import { FaUsers } from "react-icons/fa"
 import { IoIosLogIn } from "react-icons/io"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeSwitcher } from ".";
 
 const Sidebar = ({ children }: any) => {
 
@@ -42,6 +43,7 @@ const Sidebar = ({ children }: any) => {
                                 <Image src="/images/arad.svg" width={35} height={35} className="h-8 ml-3" alt="Arad Branfing Logo" />
                                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Arad Branding</span>
                             </a>
+                            <ThemeSwitcher />
                         </div>
                         <div className="flex items-center">
                             <div className="flex items-center mr-3">
@@ -130,7 +132,7 @@ const Sidebar = ({ children }: any) => {
                 </div>
             </aside>
 
-            <div className={`${pathName === "/login" ? `` : `sm:mr-64 p-4` }`}>
+            <div className={`${pathName === "/login" ? `` : `sm:mr-64 p-4`}`}>
                 <div className={`${pathName === "/login" ? `mt-0` : `mt-14 p-4 dark:border-gray-700`}`}>
                     {children}
                 </div>

@@ -16,6 +16,14 @@ body {
     background-color:
     rgb(249 250 251);
 }
+*{
+    font-family: 'B Nazanin';
+}
+@layer base{
+    body {
+        @apply dark:bg-gray-800 bg-white
+    }
+}
 
 @font-face {
     font-family: 'B Nazanin';

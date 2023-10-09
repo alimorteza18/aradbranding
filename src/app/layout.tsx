@@ -1,7 +1,8 @@
-import { Header, Sidebar } from '@/components'
+import { Sidebar } from '@/components'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ThemeProvider } from './theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body dir='rtl' className={`${inter.className} dark:bg-gray-900`}>
-        <Sidebar>
-          {children}
-        </Sidebar>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <Sidebar>
+            {children}
+          </Sidebar>
+        </ThemeProvider>
       </body>
     </html>
   )
